@@ -1,12 +1,12 @@
 # README
 
-<https://usf-cs360-spring2020.github.io/template-bulma/>
+<https://github.com/usf-cs360-spring2020/project-ahmedkadd>
 
-![Profile Image](profile.png)
+![Profile Image](profile.jpg)
 
-**Name:** Your Name  
-**Email:** <username@dons.usfca.edu>
+**Name:** Ahmed Kaddoura  
+**Email:** <amkaddoura@dons.usfca.edu>
 
-This is a template website using [Bulma](https://bulma.io/), [FontAwesome](https://origin.fontawesome.com/) for icons, and [Github Pages](). Designed to be modified (including this README file).
+This is a template website using [Bulma](https://bulma.io/), [FontAwesome](https://origin.fontawesome.com/) for icons, and [Github Pages]().
 
 *Template based on: <https://github.com/usf-cs360-spring2020/template-bulma>*
