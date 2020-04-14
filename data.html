@@ -33,7 +33,7 @@
   <nav class="navbar is-light" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item is-active" href="index.html">
+        <a class="navbar-item" href="index.html">
           <span class="icon"><i class="fas fa-home"></i></span>
           <span>Home</span>
         </a>
@@ -48,7 +48,7 @@
       <div id="main-menu" class="navbar-menu has-text-weight-medium">
         <!-- Left navbar items -->
         <div class="navbar-start">
-          <a class="navbar-item" href="data.html" title="Data">
+          <a class="navbar-item is-active" href="data.html" title="Data">
             <span class="icon"><i class="fas fa-table"></i></span>
             <span>Data</span>
           </a>
@@ -77,35 +77,45 @@
       <!-- Begin page content -->
       <div class="content">
         <h1 class="title">
-          Home Page
+          Data
         </h1>
-        <p class="subtitle">
-          About this project
-        </p>
 
-        <p>This would be an excellent place to describe what this page is for, what to find in different sections, describe any motivation or theme behind your visualizations, and so on.</p>
+        <p>Include some detailed information about the dataset here. You should <a href="#">add a link</a> to the original dataset. You might also want to quote the license:</p>
 
-        <p>You should not use this template unless you intend to customize it. Make it your own. Keep in mind this simple template is over 300 lines! You can see other examples of websites using Bulma at their showcase: <a href="https://bulma.io/expo/">bulma.io/expo/</a>.</p>
+        <blockquote>
+          <p>
+            "This data is made available under the Public Domain Dedication and License v1.0 whose full text can be found at: <a href="http://www.opendatacommons.org/licenses/pddl/1.0/">www.opendatacommons.org/licenses/pddl/1.0/</a>"
+          </p>
+          <cite>Put a citation here, possibly link to the dataset license information directly.</cite>
+        </blockquote>
 
+        <p>In addition to including a link to the source and license, you should describe the data. You might want a list of some sort to enumerate the different types of columns:</p>
 
-        <h4>Instructions</h4>
+        <ol>
+          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
 
-        <p>You will likely need to include instructions on how to interpet and use the visualization. In the case above, if you click the three dots <i class="fas fa-ellipsis-h has-text-grey-light	"></i> above it will open a menu where you can either save the visualization to a SVG or PNG, or alternatively open it up in the online Vega Editor.</p>
+          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
 
-        <h4>Discussion</h4>
+          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
 
-        <p>You may also need other sections, like a discussion section, per-visualization section on data wrangling, and others. Because of the extra content and code visualizations take, it might be worthwhile to break up your pages into one home page and then one page per visualization.</p>
+          <li><strong>Column Name:</strong> Give a description of the column, including its type and possible range of values.</li>
+        </ol>
 
-        <span class="heading">Acknowledgements</span>
+        <p>This will of course differ depending on the assignment and data.</p>
 
-        <p>
-          <a href="#">Link to insiration</a><br/>
-          <a href="#">Link to StackOverflow snippet</a>
-        </p>
+        <h3 id="wrangling">Wrangling</h3>
 
-        <p class="is-6">
-          <em>Thanks to Person Name for their suggestion to do something with the visualization.</em>
-        </p>
+        <p>Perhaps you had to do some data wrangling to the original dataset to prepare it for visualization. This would be a great place to discuss some of that wrangling.
+
+        <pre>
+You can even put code into these pre blocks.
+  It will preserve whitespace.
+    That is helpful for formatted code.
+        </pre>
+
+        <p>You can alternatively embed a Gist if you want. There is an "embed" button on <a href="https://gist.github.com/octocat/6cad326836d38bd3a7ae">the Gist page</a> and results in something like this:</p>
+
+        <script src="https://gist.github.com/octocat/6cad326836d38bd3a7ae.js"></script>
 
         <h2 id="about">About</h2>
 
