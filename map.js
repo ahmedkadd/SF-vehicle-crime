@@ -39,8 +39,6 @@ d3.json(urls.basemap).then(function(json) {
 });
 
 function drawBasemap(json) {
-  console.log("basemap", json);
-
   const basemap = g.basemap.selectAll("path.land")
     .data(json.features)
     .enter()
