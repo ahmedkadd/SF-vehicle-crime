@@ -1,3 +1,4 @@
+<!-- TODO: Get API Key for dataset -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -80,7 +81,7 @@
           Data
         </h1>
 
-        <p>For this project, I will be visualizing the <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783">Police Department Incident Reports dataset</a> from DataSF. Here is the license to the dataset:</p>
+        <p>For this project, I visualized the <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783">Police Department Incident Reports dataset</a> from <a href="https://datasf.org">DataSF</a>. This is a public dataset uder the following license:</p>
 
         <blockquote>
           <p>
@@ -88,7 +89,7 @@
           </p>
         </blockquote>
 
-        <p>The original dataset has 26 columns. The columns being used for this project are:</p>
+        <p>The original dataset has 26 columns. I am interested in the following columns for this project:</p>
 
         <ol>
           <li><strong>Incident Datetime:</strong> The date and time when the incident occurred.</li>
@@ -106,7 +107,17 @@
 
         <h3 id="wrangling">Wrangling</h3>
 
-        <p> The original dataset contained 337K rows. I narrowed the data down to incidents with the subcategory "Larceny - From Vehicle". I also narrowed it down to 2018 and 2019 to get full years of data. After this data wrangling on DataSF, there are 56,673 rows.
+        <p>The original dataset contained 337K rows. I used the data filtering tool on the DataSF website to narrow the dataset down to only the rows I am interested in.
+          First, I filtered the dataset to only show rows where the incident category contains the word "theft". I furthered narrowed it down to rows where the incident
+          subcategory contains the word "vehicle". This left me with all the rows that were an incident of motor vehicle theft or larceny from vehicle. These are the types
+          of incidents I am interested in. </p>
+
+        <p>Next, I filtered the dataset down using the DataSF filtering tool to only show incidents that happened in the last 30 days. These are the incidents which are
+          most relavent for this project. I did this by filtering to only include rows in which the incident datetime is between 2020/03/29 and 2020/04/27. For the future,
+          I will use the DataSF API and dynamically filter rows to show the lost 30 days instead of hardcoding the dates.</p>
+
+        <p>Finally, I filtered the dataset using the DataSF filtering tool to remove rows which have empty data. I noticed I was getting some errors because certain rows
+          did not have a value for latitude or longitude. To fix this, I filtered out any rows in which latitude or longitude are empty.</p>
 
         <h2 id="about">About</h2>
 
