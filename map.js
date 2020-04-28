@@ -83,8 +83,7 @@ function drawVehicles(csv) {
     .attr("cy", d => d.y)
     .attr("r", 3)
     .attr("class", "symbol")
-    // TODO: Update d.Subcategory to match data API column name
-    .style("fill", d => incidentColor(d.Subcategory));
+    .style("fill", d => incidentColor(d["Incident Subcategory"]));
 }
 
 function drawLegend() {
