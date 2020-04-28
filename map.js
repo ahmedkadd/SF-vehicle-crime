@@ -13,6 +13,8 @@ const g = {
   legend: svg.select("g#legend")
 };
 
+g.legend.attr("transform", translate(30, 100));
+
 let incidentColor = d3.scaleOrdinal()
   .domain(["Motor Vehicle Theft", "Larceny - From Vehicle"])
   .range(["red", "orange"]);
@@ -33,6 +35,7 @@ d3.json(urls.basemap).then(function(json) {
   // draw the land and neighborhood outlines
   drawBasemap(json);
   d3.csv(urls.vehicles).then(drawVehicles);
+  drawLegend();
 });
 
 function drawBasemap(json) {
@@ -82,6 +85,14 @@ function drawVehicles(csv) {
     .attr("class", "symbol")
     // TODO: Update d.Subcategory to match data API column name
     .style("fill", d => incidentColor(d.Subcategory));
+}
+
+function drawLegend() {
+  let legend = d3.legendColor()
+    .scale(incidentColor)
+    .title("Incident Type");
+
+  g.legend.call(legend);
 }
 
 function translate(x, y) {
