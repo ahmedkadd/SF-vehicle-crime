@@ -13,8 +13,8 @@ const g = {
   legend: svg.select("g#legend")
 };
 
-let statusColor = d3.scaleOrdinal()
-  .domain(["Motor Vehicle Theft", "Larceny From Vehicle"])
+let incidentColor = d3.scaleOrdinal()
+  .domain(["Motor Vehicle Theft", "Larceny - From Vehicle"])
   .range(["red", "orange"]);
 
 // setup projection
@@ -60,6 +60,28 @@ function drawBasemap(json) {
 
 function drawVehicles(csv) {
   console.log("vehicles", csv);
+
+  // loop through and add projected (x, y) coordinates
+  // (just makes our d3 code a bit more simple later)
+  csv.forEach(function(d) {
+    const latitude = parseFloat(d.Latitude);
+    const longitude = parseFloat(d.Longitude);
+    const pixels = projection([longitude, latitude]);
+
+    d.x = pixels[0];
+    d.y = pixels[1];
+  });
+
+  const symbols = g.vehicles.selectAll("circle")
+    .data(csv)
+    .enter()
+    .append("circle")
+    .attr("cx", d => d.x)
+    .attr("cy", d => d.y)
+    .attr("r", 3)
+    .attr("class", "symbol")
+    // TODO: Update d.Subcategory to match data API column name
+    .style("fill", d => incidentColor(d.Subcategory));
 }
 
 function translate(x, y) {
