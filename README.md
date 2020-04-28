@@ -1,6 +1,6 @@
 # README
 
-<https://github.com/usf-cs360-spring2020/project-ahmedkadd>
+<https://usf-cs360-spring2020.github.io/project-ahmedkadd/>
 
 ![Profile Image](profile.jpg)
 
