@@ -8,9 +8,15 @@
 
 #tooltip {
   font-weight: 600;
-
   fill: black;
   stroke: green;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  padding: 5px;
+  background: #d3d3d3;
 }
 
 path.land {
