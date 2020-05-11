@@ -12,14 +12,39 @@ const g = {
   streets: svg.select("g#streets"),
   outline: svg.select("g#outline"),
   vehicles: svg.select("g#vehicles"),
+  tooltip: svg.select("g#tooltip"),
+  details: svg.select("g#details"),
   legend: svg.select("g#legend")
 };
 
-g.legend.attr("transform", translate(30, 100));
+g.legend.attr("transform", translate(730, 260));
 
 let incidentColor = d3.scaleOrdinal()
   .domain(["Motor Vehicle Theft", "Larceny - From Vehicle"])
   .range(["red", "orange"]);
+
+// setup tooltip (shows neighborhood name)
+const tip = g.tooltip.append("text").attr("id", "tooltip");
+tip.attr("text-anchor", "end");
+tip.attr("dx", -5);
+tip.attr("dy", -5);
+tip.style("visibility", "hidden");
+
+// add details widget
+// https://bl.ocks.org/mbostock/1424037
+const details = g.details.append("foreignObject")
+  .attr("id", "details")
+  .attr("width", 300)
+  .attr("height", 300)
+  .attr("x", 0)
+  .attr("y", 0);
+
+const body = details.append("xhtml:body")
+  .style("text-align", "left")
+  .style("background", "none")
+  .html("<p>N/A</p>");
+
+details.style("visibility", "hidden");
 
 // setup projection
 // https://github.com/d3/d3-geo#geoConicEqualArea
@@ -36,7 +61,8 @@ d3.json(urls.basemap).then(function(json) {
 
   // draw the land and neighborhood outlines
   drawBasemap(json);
-  d3.json(urls.streets).then(drawStreets);
+  // TODO: Re draw streets!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //d3.json(urls.streets).then(drawStreets);
   d3.csv(urls.vehicles).then(drawVehicles);
   drawLegend();
 });
@@ -60,6 +86,30 @@ function drawBasemap(json) {
         // saves search time finding the right outline later
         d.properties.outline = this;
       });
+
+  // add highlight
+  basemap.on("mouseover.highlight", function(d) {
+    d3.select(d.properties.outline).raise();
+    d3.select(d.properties.outline).classed("active", true);
+  })
+  .on("mouseout.highlight", function(d) {
+    d3.select(d.properties.outline).classed("active", false);
+  });
+
+  // add tooltip
+  basemap.on("mouseover.tooltip", function(d) {
+    // neighborhood name property
+    tip.text(d.properties.name);
+    tip.style("visibility", "visible");
+  })
+  .on("mousemove.tooltip", function(d) {
+    const coords = d3.mouse(g.basemap.node());
+    tip.attr("x", coords[0]);
+    tip.attr("y", coords[1]);
+  })
+  .on("mouseout.tooltip", function(d) {
+    tip.style("visibility", "hidden");
+  });
 }
 
 function drawStreets(json) {
@@ -101,6 +151,49 @@ function drawVehicles(csv) {
     .attr("r", 3)
     .attr("class", "symbol")
     .style("fill", d => incidentColor(d["Incident Subcategory"]));
+
+
+  symbols.on("mouseover", function(d) {
+    d3.select(this).raise();
+    d3.select(this).classed("active", true);
+
+    // use template literal for the detail table
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+    const html = `
+      <table border="0" cellspacing="0" cellpadding="2">
+      <tbody>
+        <tr>
+          <th>Date:</th>
+          <td>${d["Incident Date"]}</td>
+        </tr>
+        <tr>
+          <th>Time:</th>
+          <td>${d["Incident Time"]}</td>
+        </tr>
+        <tr>
+          <th>Neighborhood:</th>
+          <td>${d["Analysis Neighborhood"]}</td>
+        </tr>
+        <tr>
+          <th>Type:</th>
+          <td>${d["Incident Subcategory"]}</td>
+        </tr>
+        <tr>
+          <th>Description:</th>
+          <td>${d["Incident Description"]}</td>
+        </tr>
+      </tbody>
+      </table>
+    `;
+
+    body.html(html);
+    details.style("visibility", "visible");
+  });
+
+  symbols.on("mouseout", function(d) {
+    d3.select(this).classed("active", false);
+    details.style("visibility", "hidden");
+  });
 }
 
 function drawLegend() {
