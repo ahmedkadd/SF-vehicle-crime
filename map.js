@@ -1,11 +1,31 @@
 const urls = {
-  basemap: "SFFindNeighborhoods.geojson",
+  basemap: "https://data.sfgov.org/resource/xfcw-9evu.geojson",
   streets: "https://data.sfgov.org/resource/3psu-pn9h.geojson?$limit=20000",
-  vehicles: "Police_Department_Incident_Reports.csv"
+  vehicles: "https://data.sfgov.org/resource/wg3w-h783.json"
 };
 
+// calculate date range
+const end = d3.timeDay.floor(d3.timeDay.offset(new Date(), -1));
+const start = d3.timeDay.floor(d3.timeDay.offset(end, -28));
+const format = d3.timeFormat("%Y-%m-%dT%H:%M:%S");
+console.log(format(start), format(end));
+
+// add parameters to vehicles url
+urls.vehicles += "?$where=incident_subcategory in ('Motor Vehicle Theft', 'Larceny - From Vehicle')";
+urls.vehicles += " AND incident_date between '" + format(start) + "'";
+urls.vehicles += " and '" + format(end) + "'";
+urls.vehicles += " AND point IS NOT NULL";
+
+// output url before encoding
+console.log(urls.vehicles);
+
+// encode special characters
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
+urls.vehicles = encodeURI(urls.vehicles);
+console.log(urls.vehicles);
+
 const svg = d3.select("body").select("svg#map_vis");
-svg.style("background-color", "#190BC8");
+svg.style("background-color", "white");
 
 const g = {
   basemap: svg.select("g#basemap"),
@@ -62,7 +82,7 @@ d3.json(urls.basemap).then(function(json) {
   // draw the land and neighborhood outlines
   drawBasemap(json);
   d3.json(urls.streets).then(drawStreets);
-  d3.csv(urls.vehicles).then(drawVehicles);
+  d3.json(urls.vehicles).then(drawVehicles);
   drawLegend();
 });
 
@@ -127,14 +147,14 @@ function drawStreets(json) {
     .attr("class", "street");
 }
 
-function drawVehicles(csv) {
-  console.log("vehicles", csv);
+function drawVehicles(json) {
+  console.log("vehicles", json);
 
   // loop through and add projected (x, y) coordinates
   // (just makes our d3 code a bit more simple later)
-  csv.forEach(function(d) {
-    const latitude = parseFloat(d.Latitude);
-    const longitude = parseFloat(d.Longitude);
+  json.forEach(function(d) {
+    const latitude = parseFloat(d.latitude);
+    const longitude = parseFloat(d.longitude);
     const pixels = projection([longitude, latitude]);
 
     d.x = pixels[0];
@@ -142,14 +162,14 @@ function drawVehicles(csv) {
   });
 
   const symbols = g.vehicles.selectAll("circle")
-    .data(csv)
+    .data(json)
     .enter()
     .append("circle")
     .attr("cx", d => d.x)
     .attr("cy", d => d.y)
     .attr("r", 3)
     .attr("class", "symbol")
-    .style("fill", d => incidentColor(d["Incident Subcategory"]));
+    .style("fill", d => incidentColor(d.incident_subcategory));
 
 
   symbols.on("mouseover", function(d) {
@@ -162,24 +182,28 @@ function drawVehicles(csv) {
       <table border="0" cellspacing="0" cellpadding="2">
       <tbody>
         <tr>
+          <th>Incident:</th>
+          <td>${d.incident_number}</td>
+        </tr>
+        <tr>
           <th>Date:</th>
-          <td>${d["Incident Date"]}</td>
+          <td>${new Date(d.incident_date).toDateString()}</td>
         </tr>
         <tr>
           <th>Time:</th>
-          <td>${d["Incident Time"]}</td>
+          <td>${d.incident_time}</td>
         </tr>
         <tr>
           <th>Neighborhood:</th>
-          <td>${d["Analysis Neighborhood"]}</td>
+          <td>${d.analysis_neighborhood}</td>
         </tr>
         <tr>
           <th>Type:</th>
-          <td>${d["Incident Subcategory"]}</td>
+          <td>${d.incident_subcategory}</td>
         </tr>
         <tr>
           <th>Description:</th>
-          <td>${d["Incident Description"]}</td>
+          <td>${d.incident_description}</td>
         </tr>
       </tbody>
       </table>
