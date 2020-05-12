@@ -85,10 +85,7 @@
     <div class="container">
       <!-- Begin page content -->
       <div class="content">
-        <h1 class="title">
-          Visualizations
-        </h1>
-
+        <h2>Locations of San Francisco Vehicle Break-Ins In The Last Month</h2>
         <svg width="960" height="600" id="map_vis">
           <g id="basemap"></g>
           <g id="streets" pointer-events="none"></g>
@@ -99,23 +96,33 @@
           <g id="legend" pointer-events="none"></g>
         </svg>
 
+        <h2>Times of San Francisco Vehicle Break-Ins In The Last Month</h2>
         <svg width="960" height="500" id="heatmap_vis"></svg>
 
         <script src="map.js"></script>
         <script src="heatmap.js"></script>
 
         <h2>Encoding</h2>
+        <h3>Map Visualization</h3>
         <p>Each circle on the map encodes one police incident of vehicle crime. The position of the circle on the map is encoding the latitude and longitude of where this
         incident occured. The color of the circle is encoding the incident type. Red is given to motor vehicle thefts because it is the more extreme and costly crime,
         while orange is given to larceny from vehicle because it is less extreme and usually less costly.</p>
 
+        <h3>Heatmap Visualization</h3>
+        <p></p>
+
         <h2>Interactivity</h2>
-        <p>For this visualization, I plan to implement details on demand interactivity. When the mouse hovers over a circle, a tool tip will appear which will give more
-        information about that incident. The tool tip table will include the neighborhood, the exact time and date, and the description of the incident. When the mouse
-        hovers over a neighborhood on the basemap, the name of the neighborhood will be shown. There will also be brushing interactivity so that when the mouse hovers over
-        an incident, the incidents of the same type will be more prominent while the incidents of the different type will fade to the background. Finally, I will include
-        interactivity which links this map visualization to a second visualization that will show the trends over time in vehicle crimes in that neighborhood. When the mouse
-        hovers over an incident in this visualization, the bar corresponding to the same neighborhood in the bar chart visualization will be highlighted.</p>
+        <h3>Map Visualization</h3>
+        <p>For this visualization, there is details on demand interactivity. When the mouse hovers over a circle, a tool tip appears which will gives more
+        information about that incident. The tool tip table will include the incident number, the neighborhood, the exact time and date, and the description of the incident.
+        When the mouse hovers over a neighborhood on the basemap, the name of the neighborhood will be shown. There will also be brushing interactivity so that when the mouse hovers over
+        an incident, the incidents of the same type will be more prominent while the incidents of the different type will fade to the background.</p>
+
+        <h3>Heatmap Visualization</h3>
+        <p></p>
+
+        <h2>Findings</h2>
+        <p></p>
 
         <h2 id="about">About</h2>
 
