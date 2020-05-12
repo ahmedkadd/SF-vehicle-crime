@@ -63,7 +63,7 @@ d3.json(urls.vehicles).then(draw);
 
 // https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 function draw(json) {
-  console.log("Heatmap json", json);
+  console.log("json", json);
   let data = [];
 
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -218,13 +218,6 @@ function drawHeatmapLegend() {
 }
 
 function drawTitles() {
-  let title = heatmap_svg.append("text")
-    .text("Last 30 Days of Vehicle Break Ins")
-    .attr("id", "title")
-    .attr("x", 180)
-    .attr("y", 26)
-    .attr("font-size", "26px");
-
   let x = heatmap_svg.append("text")
     .text("Day of the Week")
     .attr("id", "axisTitle")
@@ -236,8 +229,8 @@ function drawTitles() {
   let y = heatmap_svg.append("text")
     .text("Hour")
     .attr("id", "axisTitle")
-    .attr("x", 52)
-    .attr("y", 45)
+    .attr("x", 145)
+    .attr("y", 40)
     .attr("font-size", "14px")
     .attr("font-weight", "bold");
 }
