@@ -118,7 +118,7 @@ function drawBasemap(json) {
   // add tooltip
   basemap.on("mouseover.tooltip", function(d) {
     // neighborhood name property
-    tip.text(d.properties.name);
+    tip.text(d.properties.nhood);
     tip.style("visibility", "visible");
   })
   .on("mousemove.tooltip", function(d) {
