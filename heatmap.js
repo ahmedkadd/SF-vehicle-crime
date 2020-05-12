@@ -135,7 +135,7 @@ function draw(json) {
   cells.on("mouseover.highlight", function(d) {
     d3.select(this)
       .raise()
-      .style("stroke", "grey")
+      .style("stroke", "red")
       .style("stroke-width", 1);
   });
 
