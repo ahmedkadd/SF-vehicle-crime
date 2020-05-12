@@ -167,7 +167,7 @@ function drawVehicles(json) {
     .append("circle")
     .attr("cx", d => d.x)
     .attr("cy", d => d.y)
-    .attr("r", 3)
+    .attr("r", 4)
     .attr("class", "symbol")
     .style("fill", d => incidentColor(d.incident_subcategory));
 
