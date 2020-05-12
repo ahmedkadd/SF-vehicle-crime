@@ -9,7 +9,6 @@
 #tooltip {
   font-weight: 600;
   fill: black;
-  stroke: green;
 }
 
 .tooltip {
@@ -39,7 +38,7 @@ path.street {
 }
 
 .active {
-  stroke: green !important;
+  stroke: red !important;
   stroke-width: 1.5px !important;
 }
 
