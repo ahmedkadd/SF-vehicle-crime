@@ -24,17 +24,17 @@ console.log(urls.vehicles);
 urls.vehicles = encodeURI(urls.vehicles);
 console.log(urls.vehicles);
 
-const svg = d3.select("body").select("svg#map_vis");
-svg.style("background-color", "white");
+const map_svg = d3.select("body").select("svg#map_vis");
+map_svg.style("background-color", "white");
 
 const g = {
-  basemap: svg.select("g#basemap"),
-  streets: svg.select("g#streets"),
-  outline: svg.select("g#outline"),
-  vehicles: svg.select("g#vehicles"),
-  tooltip: svg.select("g#tooltip"),
-  details: svg.select("g#details"),
-  legend: svg.select("g#legend")
+  basemap: map_svg.select("g#basemap"),
+  streets: map_svg.select("g#streets"),
+  outline: map_svg.select("g#outline"),
+  vehicles: map_svg.select("g#vehicles"),
+  tooltip: map_svg.select("g#tooltip"),
+  details: map_svg.select("g#details"),
+  legend: map_svg.select("g#legend")
 };
 
 g.legend.attr("transform", translate(730, 260));

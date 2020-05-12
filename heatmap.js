@@ -1,12 +1,12 @@
 let config = {
-  'svg2': {},
+  'heatmap_svg': {},
   'margin': {},
   'plot': {},
-  'legend': {}
+  'heatmapLegend': {}
 };
 
-config.svg2.width = 960;
-config.svg2.height = 500;
+config.heatmap_svg.width = 960;
+config.heatmap_svg.height = 500;
 
 config.margin.top = 50;
 config.margin.right = 10;
@@ -15,13 +15,13 @@ config.margin.left = 160;
 
 config.plot.x = config.margin.left;
 config.plot.y = config.margin.top;
-config.plot.width = config.svg2.width - config.margin.left - config.margin.right;
-config.plot.height = config.svg2.height - config.margin.top - config.margin.bottom;
+config.plot.width = config.heatmap_svg.width - config.margin.left - config.margin.right;
+config.plot.height = config.heatmap_svg.height - config.margin.top - config.margin.bottom;
 
-config.legend.x = 750;
-config.legend.y = 10;
-config.legend.width = 180;
-config.legend.height = 10;
+config.heatmapLegend.x = 750;
+config.heatmapLegend.y = 10;
+config.heatmapLegend.width = 180;
+config.heatmapLegend.height = 10;
 
 let tooltipMap = {
   "Day": "Day:",
@@ -29,11 +29,11 @@ let tooltipMap = {
   "Count": "Number of Incidents:"
 };
 
-var svg2 = d3.select("svg#heatmap_vis");
-svg2.attr('width', config.svg2.width);
-svg2.attr('height', config.svg2.height);
+let heatmap_svg = d3.select("svg#heatmap_vis");
+heatmap_svg.attr('width', config.heatmap_svg.width);
+heatmap_svg.attr('height', config.heatmap_svg.height);
 
-let plot = svg2.append('g');
+let plot = heatmap_svg.append('g');
 plot.attr('id', 'plot');
 plot.attr('transform', translate(config.plot.x, config.plot.y));
 
@@ -95,13 +95,13 @@ function draw(data) {
   scale.x.domain(days);
   scale.y.domain(neighborhoods);
 
-  let gx = svg2.append("g")
+  let gx = heatmap_svg.append("g")
     .attr("id", "x-axis")
     .attr("class", "axis")
     .attr("transform", translate(config.plot.x, config.plot.y + config.plot.height))
     .call(axis.x);
 
-  let gy = svg2.append("g")
+  let gy = heatmap_svg.append("g")
     .attr("id", "y-axis")
     .attr("class", "axis")
     .attr("transform", translate(config.plot.x, config.plot.y))
@@ -168,25 +168,25 @@ function draw(data) {
   });
 
   drawTitles();
-  drawLegend();
+  drawHeatmapLegend();
 }
 
 // https://bl.ocks.org/mbostock/1086421
-function drawLegend() {
-  let legend = svg2.append("g")
-    .attr("id", "legend")
-    .attr("transform", translate(config.legend.x, config.legend.y));
+function drawHeatmapLegend() {
+  let heatmapLegend = heatmap_svg.append("g")
+    .attr("id", "heatmapLegend")
+    .attr("transform", translate(config.heatmapLegend.x, config.heatmapLegend.y));
 
-  legend.append("rect")
-    .attr("width", config.legend.width)
-    .attr("height", config.legend.height)
+  heatmapLegend.append("rect")
+    .attr("width", config.heatmapLegend.width)
+    .attr("height", config.heatmapLegend.height)
     .attr("fill", "url(#gradient)");
 
   let gradientScale = d3.scaleLinear()
     .domain([0, 100])
     .range(scale.color.domain());
 
-  let gradient = svg2.append("defs")
+  let gradient = heatmap_svg.append("defs")
     .append("linearGradient")
     .attr("id", "gradient")
 
@@ -197,17 +197,17 @@ function drawLegend() {
     .attr("offset", d => d + "%")
     .attr("stop-color", d => scale.color(gradientScale(d)));
 
-  let legendScale = d3.scaleLinear()
+  let heatmapLegendScale = d3.scaleLinear()
     .domain(scale.color.domain())
-    .range([0, config.legend.width]);
+    .range([0, config.heatmapLegend.width]);
 
-  let legendAxis = d3.axisBottom(legendScale)
+  let heatmapLegendAxis = d3.axisBottom(heatmapLegendScale)
     .tickValues(scale.color.domain())
     .tickSize(5);
 
-  legend.append("g")
-    .call(legendAxis)
-    .attr("transform", translate(0, config.legend.height))
+  heatmapLegend.append("g")
+    .call(heatmapLegendAxis)
+    .attr("transform", translate(0, config.heatmapLegend.height))
 }
 
 function drawTitles() {
@@ -218,7 +218,7 @@ function drawTitles() {
     .attr("y", 26)
     .attr("font-size", "26px");*/
 
-  let x = svg2.append("text")
+  let x = heatmap_svg.append("text")
     .text("Day of the Week")
     .attr("id", "axisTitle")
     .attr("x", 510)
@@ -226,7 +226,7 @@ function drawTitles() {
     .attr("font-size", "16px")
     .attr("font-weight", "bold");
 
-  let y = svg2.append("text")
+  let y = heatmap_svg.append("text")
     .text("Neighborhoood")
     .attr("id", "axisTitle")
     .attr("x", 52)
