@@ -25,7 +25,7 @@ config.heatmapLegend.height = 10;
 
 let tooltipMap = {
   "Day": "Day:",
-  "Neighborhood": "Neighborhood:",
+  "Hour": "Hour:",
   "Count": "Number of Incidents:"
 };
 
@@ -59,41 +59,48 @@ axis.y.tickPadding(0);
 axis.y.tickSize(3);
 axis.y.tickSizeOuter(0);
 
-//TODO: maybe add tool tip convert table?
+d3.json(urls.vehicles).then(draw);
 
-d3.tsv("daily.tsv", convertRow).then(draw);
+// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
+function draw(json) {
+  console.log("Heatmap json", json);
+  let data = [];
 
-function convertRow(row, index) {
-  let out = {};
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let hours = [];
+  for (let i = 0; i < 24; i++) {
+    hours.push(i);
+  }
 
-  for (let col in row) {
-    switch (col) {
-      case 'Day':
-        out[col] = row[col];
-        break;
+  hours.reverse();
 
-      case 'Neighborhood':
-        out[col] = row[col];
-        break;
-
-      default:
-        out[col] = parseInt(row[col]);
+  for (const day of days) {
+    for (let i = 0; i < 24; i++) {
+      let currentData = {
+        "Day": day,
+        "Hour": i,
+        "Count": 0
+      }
+      data.push(currentData);
     }
   }
 
-  return out;
-}
+  json.forEach(function(d) {
+    const day = d.incident_day_of_week;
+    let timeString = d.incident_time;
+    const time = parseInt(timeString.substring(0, timeString.indexOf(":")));
 
-// https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
-function draw(data) {
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].Day == day && data[i].Hour == time) {
+        data[i].Count++;
+      }
+    }
+  });
+
   console.log("data", data);
-  let neighborhoods = d3.set(data.map(function( d ) { return d.Neighborhood; } )).values();
-
-  let days = d3.set(data.map(function( d ) { return d.Day; } )).values();
-  days.reverse();
 
   scale.x.domain(days);
-  scale.y.domain(neighborhoods);
+  scale.y.domain(hours);
 
   let gx = heatmap_svg.append("g")
     .attr("id", "x-axis")
@@ -118,7 +125,7 @@ function draw(data) {
     .enter()
     .append("rect")
     .attr("x", d => scale.x(d.Day))
-    .attr("y", d => scale.y(d.Neighborhood))
+    .attr("y", d => scale.y(d.Hour))
     .attr("width", d => scale.x.bandwidth())
     .attr("height", d => scale.y.bandwidth())
     .style("fill", d => scale.color(d.Count))
@@ -211,12 +218,12 @@ function drawHeatmapLegend() {
 }
 
 function drawTitles() {
-  /*let title = svg.append("text")
+  let title = heatmap_svg.append("text")
     .text("Last 30 Days of Vehicle Break Ins")
     .attr("id", "title")
     .attr("x", 180)
     .attr("y", 26)
-    .attr("font-size", "26px");*/
+    .attr("font-size", "26px");
 
   let x = heatmap_svg.append("text")
     .text("Day of the Week")
@@ -227,7 +234,7 @@ function drawTitles() {
     .attr("font-weight", "bold");
 
   let y = heatmap_svg.append("text")
-    .text("Neighborhoood")
+    .text("Hour")
     .attr("id", "axisTitle")
     .attr("x", 52)
     .attr("y", 45)
