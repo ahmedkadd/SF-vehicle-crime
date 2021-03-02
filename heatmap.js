@@ -63,7 +63,6 @@ d3.json(urls.vehicles).then(draw);
 
 // https://blockbuilder.org/sjengle/47c5c20a18ec29f4e2b82905bdb7fe95
 function draw(json) {
-  console.log("json", json);
   let data = [];
 
   let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -96,8 +95,6 @@ function draw(json) {
       }
     }
   });
-
-  console.log("data", data);
 
   scale.x.domain(days);
   scale.y.domain(hours);
