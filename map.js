@@ -8,7 +8,6 @@ const urls = {
 const end = d3.timeDay.floor(d3.timeDay.offset(new Date(), -1));
 const start = d3.timeDay.floor(d3.timeDay.offset(end, -28));
 const format = d3.timeFormat("%Y-%m-%dT%H:%M:%S");
-console.log(format(start), format(end));
 
 // add parameters to vehicles url
 urls.vehicles += "?$where=incident_subcategory in ('Motor Vehicle Theft', 'Larceny - From Vehicle')";
@@ -16,13 +15,9 @@ urls.vehicles += " AND incident_date between '" + format(start) + "'";
 urls.vehicles += " and '" + format(end) + "'";
 urls.vehicles += " AND point IS NOT NULL";
 
-// output url before encoding
-console.log(urls.vehicles);
-
 // encode special characters
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
 urls.vehicles = encodeURI(urls.vehicles);
-console.log(urls.vehicles);
 
 const map_svg = d3.select("body").select("svg#map_vis");
 map_svg.style("background-color", "white");
@@ -132,8 +127,6 @@ function drawBasemap(json) {
 }
 
 function drawStreets(json) {
-  console.log("streets", json);
-
   // only show active streets
   const streets = json.features.filter(function(d) {
     return d.properties.active;
@@ -148,8 +141,6 @@ function drawStreets(json) {
 }
 
 function drawVehicles(json) {
-  console.log("vehicles", json);
-
   // loop through and add projected (x, y) coordinates
   // (just makes our d3 code a bit more simple later)
   json.forEach(function(d) {
