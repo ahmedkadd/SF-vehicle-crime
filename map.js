@@ -76,7 +76,7 @@ d3.json(urls.basemap).then(function(json) {
 
   // draw the land and neighborhood outlines
   drawBasemap(json);
-  d3.json(urls.streets).then(drawStreets);
+  //d3.json(urls.streets).then(drawStreets);
   d3.json(urls.vehicles).then(drawVehicles);
   drawLegend();
 });
