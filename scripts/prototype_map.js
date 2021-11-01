@@ -1,6 +1,6 @@
 const urls = {
-  basemap: "SFFindNeighborhoods.geojson",
-  vehicles: "Police_Department_Incident_Reports.csv"
+  basemap: "../data/SFFindNeighborhoods.geojson",
+  vehicles: "../data/Police_Department_Incident_Reports.csv"
 };
 
 const svg = d3.select("body").select("svg#map_vis");
