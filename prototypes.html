@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
@@ -11,215 +11,277 @@
 
     <!-- Load Bulma from CDN -->
     <!-- https://bulma.io/ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link href="prototype_style.css" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <link href="prototype_style.css" rel="stylesheet" type="text/css" />
 
     <!-- Load Font Awesome 5 (free) icons -->
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
   </head>
 
   <body>
+    <!-- Page header -->
+    <!-- https://bulma.io/documentation/layout/hero/ -->
+    <section class="hero is-warning is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">San Francisco Vehicle Crime</h1>
+          <h2 class="subtitle">Ahmed Kaddoura</h2>
+        </div>
+      </div>
+    </section>
+    <!-- End page header -->
 
-  <!-- Page header -->
-  <!-- https://bulma.io/documentation/layout/hero/ -->
-  <section class="hero is-link is-bold">
-    <div class="hero-body">
+    <!-- Page navigation -->
+    <!-- https://bulma.io/documentation/components/navbar/ -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="container">
-        <h1 class="title">San Francisco Vehicle Crime</h1>
-        <h2 class="subtitle">Ahmed Kaddoura</h2>
-      </div>
-    </div>
-  </section>
-  <!-- End page header -->
-
-  <!-- Page navigation -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="index.html">
-          <span class="icon"><i class="fas fa-home"></i></span>
-          <span>Home</span>
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="main-menu" class="navbar-menu has-text-weight-medium">
-        <!-- Left navbar items -->
-        <div class="navbar-start">
-          <a class="navbar-item" href="data.html" title="Data">
-            <span class="icon"><i class="fas fa-table"></i></span>
-            <span>Data</span>
+        <div class="navbar-brand">
+          <a class="navbar-item" href="index.html">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span>Home</span>
           </a>
 
-          <a class="navbar-item is-active" href="prototypes.html" title="Prototypes">
-            <span class="icon"><i class="fas fa-comment"></i></span>
-            <span>Prototypes</span>
-          </a>
-
-          <a class="navbar-item" href="visualizations.html" title="Visualizations">
-            <span class="icon"><i class="fas fa-map"></i></span>
-            <span>Visualizations</span>
-          </a>
-
-        </div>
-
-        <!-- Right navbar items -->
-        <div class="navbar-end">
-          <a class="navbar-item" href="about.html" title="About">
-            <span class="icon"><i class="fas fa-info-circle"></i></span>
-            <span>About</span>
+          <a
+            role="button"
+            class="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="main-menu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </a>
         </div>
-      </div>
-    </div>
-  </nav>
-  <!-- End page navigation -->
 
-  <section class="section">
-    <div class="container">
-      <!-- Begin page content -->
-      <div class="content">
-        <h1 class="title">
-          Prototypes
-        </h1>
+        <div id="main-menu" class="navbar-menu has-text-weight-medium">
+          <!-- Left navbar items -->
+          <div class="navbar-start">
+            <a class="navbar-item" href="data.html" title="Data">
+              <span class="icon"><i class="fas fa-table"></i></span>
+              <span>Data</span>
+            </a>
 
-        <h2> Alpha prototype </h2>
+            <a
+              class="navbar-item is-active"
+              href="prototypes.html"
+              title="Prototypes"
+            >
+              <span class="icon"><i class="fas fa-comment"></i></span>
+              <span>Prototypes</span>
+            </a>
 
-        <img src="alpha_prototype.png" height="600" width="960">
-
-        <p>The purpose of this prototype was simply to ensure the dataset could be loaded and visualized.</p>
-
-        <h2> Beta prototype </h2>
-
-        <svg width="960" height="600" id="map_vis">
-          <g id="basemap"></g>
-          <g id="outline"></g>
-          <g id="vehicles"></g>
-          <g id="legend"></g>
-        </svg>
-
-        <script src="prototype_map.js"></script>
-
-        <h3>Question</h3>
-        <p>The question I am trying to answer with this prototype is: Where are the most dangerous and the safest places in San Francisco to park your car?</p>
-
-        <h3>Answer</h3>
-        <p>Using this prototype, I can say that the most dangerous part of San Francisco to park your car is in the northeastern part of the city. This is because
-        this part of the city has the highest concentration of motor vehicle theft and larceny from vehicle.</p>
-
-        <h3>Encoding</h3>
-        <p>Each circle on the map encodes one police incident of vehicle crime. The position of the circle on the map is encoding the latitude and longitude of where this
-        incident occured. The color of the circle is encoding the incident type. Red is given to motor vehicle thefts because it is the more extreme and costly crime,
-        while orange is given to larceny from vehicle because it is less extreme and usually less costly.</p>
-
-        <h3>Planned Interactivity</h3>
-        <p>For this visualization, I plan to implement details on demand interactivity. When the mouse hovers over a circle, a tool tip will appear which will give more
-        information about that incident. The tool tip table will include the neighborhood, the exact time and date, and the description of the incident. When the mouse
-        hovers over a neighborhood on the basemap, the name of the neighborhood will be shown. There will also be brushing interactivity so that when the mouse hovers over
-        an incident, the incidents of the same type will be more prominent while the incidents of the different type will fade to the background. Finally, I will include
-        interactivity which links this map visualization to a second visualization that will show the trends over time in vehicle crimes in that neighborhood. When the mouse
-        hovers over an incident in this visualization, the bar corresponding to the same neighborhood in the bar chart visualization will be highlighted.</p>
-
-        <h2>Feedback</h2>
-
-        <h4>Asynchronous Peer Feedback</h4>
-        <p>I recieved feedback on my beta release prototype that the background color on the map was too bright. I changed my visualization based on this feedback from the
-        bright blue background color to a white background color. This is also a better use of gestalt principles by clearly showing the data in the foreground on a white
-        background. I recieved feedback on my design and aesthetics that said to update my website theme from the default template to something more aesthetically pleasing.
-        I updated my website design based on this feedback to include better looking colors. I recieved feedback that the circles I used to represent reports were small and
-        hard to see. I changed the visualization based on this feedback and increased the radius of the circles.</p>
-
-        <h4>Live Instructor Feedback</h4>
-        <p>I recieved feedback from my instructor Sophie Engle to include the streets of San Francisco in the map visualization to make it easier to read the map. I updated
-          my visualization based on this feedback and added the streets to the map. I also recieved a recommendation for a supplemental visualization of a heatmap to show
-          time data to go along with the geospatial data of the map visualization. I took this feedback and implemented a heatmap which shows the number of incidents of car
-          break ins based on the day and time.</p>
-
-
-        <h2 id="about">About</h2>
-
-        <!-- Profile box -->
-        <!-- https://bulma.io/documentation/layout/media-object/ -->
-        <article class="media">
-          <figure class="media-left">
-            <p class="image is-128x128"><img class="is-rounded" src="profile.jpg"></p>
-          </figure>
-
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong>Ahmed Kaddoura</strong><br/>
-                CS Major, <a href="https://www.usfca.edu/">University of San Francisco</a><br/>
-                <em>Expected Graduation: Fall 2020</em><br/>
-                <i class="fas fa-envelope"></i> <a href="mailto:amkaddoura@dons.usfca.edu">amkaddoura@dons.usfca.edu</a>
-              </p>
-
-              <p>
-                I am a software developer and data analyst  based in San Francisco. My research interests are in machine learning, computer vision, and human-computer interaction. I enjoy writing songs, playing basketball, hiking, and baking.
-              </p>
-            </div>
+            <a
+              class="navbar-item"
+              href="visualizations.html"
+              title="Visualizations"
+            >
+              <span class="icon"><i class="fas fa-map"></i></span>
+              <span>Visualizations</span>
+            </a>
           </div>
-        </article>
-        <!-- End profile box -->
 
+          <!-- Right navbar items -->
+          <div class="navbar-end">
+            <a class="navbar-item" href="about.html" title="About">
+              <span class="icon"><i class="fas fa-info-circle"></i></span>
+              <span>About</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <!-- End page content -->
-    </div>
-  </section>
+    </nav>
+    <!-- End page navigation -->
 
-  <!-- Page footer -->
-  <!-- https://bulma.io/documentation/layout/footer/ -->
-  <footer class="footer">
-    <div class="content has-text-centered is-size-7">
-      <p>
-        <a href="#top">
-          <span class="fas fa-arrow-up"></span>
-          <span class="has-text-weight-medium">Back to Top</span>
-        </a>
-      </p>
+    <section class="section">
+      <div class="container">
+        <!-- Begin page content -->
+        <div class="content">
+          <h1 class="title">Prototypes</h1>
 
-      <p>
-        <a href="https://github.com/usf-cs360-spring2020/project-ahmedkadd" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
-        </a>
+          <h2>Alpha prototype</h2>
 
-        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
-        </a>
+          <img src="alpha_prototype.png" height="600" width="960" />
 
-        <a href="https://bulma.io" class="button is-small">
-          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
-        </a>
-      </p>
-    </div>
-  </footer>
-  <!-- End page footer -->
+          <p>
+            The purpose of this prototype was simply to ensure the dataset could
+            be loaded and visualized.
+          </p>
 
-  <!-- Mobile menu responsiveness -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+          <h2>Beta prototype</h2>
 
-    if ($navbarBurgers.length > 0) {
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
+          <svg width="960" height="600" id="map_vis">
+            <g id="basemap"></g>
+            <g id="outline"></g>
+            <g id="vehicles"></g>
+            <g id="legend"></g>
+          </svg>
+
+          <script src="prototype_map.js"></script>
+
+          <h3>Question</h3>
+          <p>
+            The question I am trying to answer with this prototype is: Where are
+            the most dangerous and the safest places in San Francisco to park
+            your car?
+          </p>
+
+          <h3>Answer</h3>
+          <p>
+            Using this prototype, I can say that the most dangerous part of San
+            Francisco to park your car is in the northeastern part of the city.
+            This is because this part of the city has the highest concentration
+            of motor vehicle theft and larceny from vehicle.
+          </p>
+
+          <h3>Encoding</h3>
+          <p>
+            Each circle on the map encodes one police incident of vehicle crime.
+            The position of the circle on the map is encoding the latitude and
+            longitude of where this incident occured. The color of the circle is
+            encoding the incident type. Red is given to motor vehicle thefts
+            because it is the more extreme and costly crime, while orange is
+            given to larceny from vehicle because it is less extreme and usually
+            less costly.
+          </p>
+
+          <h3>Planned Interactivity</h3>
+          <p>
+            For this visualization, I plan to implement details on demand
+            interactivity. When the mouse hovers over a circle, a tool tip will
+            appear which will give more information about that incident. The
+            tool tip table will include the neighborhood, the exact time and
+            date, and the description of the incident. When the mouse hovers
+            over a neighborhood on the basemap, the name of the neighborhood
+            will be shown. There will also be brushing interactivity so that
+            when the mouse hovers over an incident, the incidents of the same
+            type will be more prominent while the incidents of the different
+            type will fade to the background. Finally, I will include
+            interactivity which links this map visualization to a second
+            visualization that will show the trends over time in vehicle crimes
+            in that neighborhood. When the mouse hovers over an incident in this
+            visualization, the bar corresponding to the same neighborhood in the
+            bar chart visualization will be highlighted.
+          </p>
+
+          <h2>Feedback</h2>
+
+          <h4>Asynchronous Peer Feedback</h4>
+          <p>
+            I recieved feedback on my beta release prototype that the background
+            color on the map was too bright. I changed my visualization based on
+            this feedback from the bright blue background color to a white
+            background color. This is also a better use of gestalt principles by
+            clearly showing the data in the foreground on a white background. I
+            recieved feedback on my design and aesthetics that said to update my
+            website theme from the default template to something more
+            aesthetically pleasing. I updated my website design based on this
+            feedback to include better looking colors. I recieved feedback that
+            the circles I used to represent reports were small and hard to see.
+            I changed the visualization based on this feedback and increased the
+            radius of the circles.
+          </p>
+
+          <h4>Live Instructor Feedback</h4>
+          <p>
+            I recieved feedback from my instructor Sophie Engle to include the
+            streets of San Francisco in the map visualization to make it easier
+            to read the map. I updated my visualization based on this feedback
+            and added the streets to the map. I also recieved a recommendation
+            for a supplemental visualization of a heatmap to show time data to
+            go along with the geospatial data of the map visualization. I took
+            this feedback and implemented a heatmap which shows the number of
+            incidents of car break ins based on the day and time.
+          </p>
+
+          <h2 id="about">About</h2>
+
+          <!-- Profile box -->
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-128x128">
+                <img class="is-rounded" src="profile.jpg" />
+              </p>
+            </figure>
+
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>Ahmed Kaddoura</strong><br />
+                  <a href="https://www.usfca.edu/"
+                    >University of San Francisco</a
+                  ><br />
+                  Master of Science in Computer Science<br />
+                  <em>Expected Graduation: December 2022</em><br />
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:amkaddoura@usfca.edu">amkaddoura@usfca.edu</a>
+                </p>
+
+                <p>
+                  I am a Software Developer and Data Scientist based in San
+                  Francisco. My research interests are in Machine Learning,
+                  Computer Vision, Brain-Computer Interfaces, and Human-Computer
+                  Interaction. I enjoy writing songs, playing basketball,
+                  hiking, and baking.
+                </p>
+              </div>
+            </div>
+          </article>
+          <!-- End profile box -->
+        </div>
+        <!-- End page content -->
+      </div>
+    </section>
+
+    <!-- Page footer -->
+    <footer class="footer">
+      <div class="content has-text-centered is-size-7">
+        <p>
+          <a href="#top">
+            <span class="fas fa-arrow-up"></span>
+            <span class="has-text-weight-medium">Back to Top</span>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/ahmedkadd/sf-vehicle-crime"
+            class="button is-small"
+            style="padding-left: 1em; padding-right: 1em"
+          >
+            <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+          </a>
+        </p>
+      </div>
+    </footer>
+    <!-- End page footer -->
+
+    <!-- Mobile menu responsiveness -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const $navbarBurgers = Array.prototype.slice.call(
+          document.querySelectorAll(".navbar-burger"),
+          0
+        );
+
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach((el) => {
+            el.addEventListener("click", () => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+              el.classList.toggle("is-active");
+              $target.classList.toggle("is-active");
+            });
+          });
+        }
       });
-    }
-  });
-  </script>
-  <!-- End mobile menu responsiveness -->
+    </script>
+    <!-- End mobile menu responsiveness -->
   </body>
-
 </html>

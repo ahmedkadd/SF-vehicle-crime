@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
@@ -11,202 +11,250 @@
 
     <!-- Load Bulma from CDN -->
     <!-- https://bulma.io/ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link href="visualizations_style.css" rel="stylesheet" type="text/css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <link href="visualizations_style.css" rel="stylesheet" type="text/css" />
 
     <!-- Load Font Awesome 5 (free) icons -->
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
   </head>
 
   <body>
+    <!-- Page header -->
+    <!-- https://bulma.io/documentation/layout/hero/ -->
+    <section class="hero is-warning is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">San Francisco Vehicle Crime</h1>
+          <h2 class="subtitle">Ahmed Kaddoura</h2>
+        </div>
+      </div>
+    </section>
+    <!-- End page header -->
 
-  <!-- Page header -->
-  <!-- https://bulma.io/documentation/layout/hero/ -->
-  <section class="hero is-link is-bold">
-    <div class="hero-body">
+    <!-- Page navigation -->
+    <!-- https://bulma.io/documentation/components/navbar/ -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="container">
-        <h1 class="title">San Francisco Vehicle Crime</h1>
-        <h2 class="subtitle">Ahmed Kaddoura</h2>
-      </div>
-    </div>
-  </section>
-  <!-- End page header -->
-
-  <!-- Page navigation -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="index.html">
-          <span class="icon"><i class="fas fa-home"></i></span>
-          <span>Home</span>
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="main-menu" class="navbar-menu has-text-weight-medium">
-        <!-- Left navbar items -->
-        <div class="navbar-start">
-          <a class="navbar-item" href="data.html" title="Data">
-            <span class="icon"><i class="fas fa-table"></i></span>
-            <span>Data</span>
+        <div class="navbar-brand">
+          <a class="navbar-item" href="index.html">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span>Home</span>
           </a>
 
-          <a class="navbar-item" href="prototypes.html" title="Prototypes">
-            <span class="icon"><i class="fas fa-comment"></i></span>
-            <span>Prototypes</span>
-          </a>
-
-          <a class="navbar-item is-active" href="visualizations.html" title="Visualizations">
-            <span class="icon"><i class="fas fa-map"></i></span>
-            <span>Visualizations</span>
-          </a>
-
-        </div>
-
-        <!-- Right navbar items -->
-        <div class="navbar-end">
-          <a class="navbar-item" href="about.html" title="About">
-            <span class="icon"><i class="fas fa-info-circle"></i></span>
-            <span>About</span>
+          <a
+            role="button"
+            class="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="main-menu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </a>
         </div>
-      </div>
-    </div>
-  </nav>
-  <!-- End page navigation -->
 
-  <section class="section">
-    <div class="container">
-      <!-- Begin page content -->
-      <div class="content">
-        <h2>Locations of San Francisco Vehicle Crimes in the last 30 days</h2>
-        <svg width="960" height="600" id="map_vis">
-          <g id="basemap"></g>
-          <g id="streets" pointer-events="none"></g>
-          <g id="outline" pointer-events="none"></g>
-          <g id="vehicles"></g>
-          <g id="tooltip" pointer-events="none"></g>
-          <g id="details" pointer-events="none"></g>
-          <g id="legend" pointer-events="none"></g>
-        </svg>
+        <div id="main-menu" class="navbar-menu has-text-weight-medium">
+          <!-- Left navbar items -->
+          <div class="navbar-start">
+            <a class="navbar-item" href="data.html" title="Data">
+              <span class="icon"><i class="fas fa-table"></i></span>
+              <span>Data</span>
+            </a>
 
-        <h2>Times of San Francisco Vehicle Crimes in the last 30 days</h2>
-        <svg width="960" height="500" id="heatmap_vis"></svg>
+            <a class="navbar-item" href="prototypes.html" title="Prototypes">
+              <span class="icon"><i class="fas fa-comment"></i></span>
+              <span>Prototypes</span>
+            </a>
 
-        <script src="map.js"></script>
-        <script src="heatmap.js"></script>
-
-        <h2>Encoding</h2>
-        <h4>Map Visualization</h4>
-        <p>Each circle on the map encodes one police incident of vehicle crime. The position of the circle on the map is encoding the latitude and longitude of where this
-        incident occured. The color of the circle is encoding the incident type. Red is given to motor vehicle thefts because it is the more extreme and costly crime,
-        while orange is given to larceny from vehicle because it is less extreme and usually less costly.</p>
-
-        <h4>Heatmap Visualization</h4>
-        <p>This visualization is a heatmap which encodes the number of vehicle crime reports to the San Francisco Police Department for each day of the week and hour and in
-        the last month. An orange color scale is used, and the darker orange a cell is, the more reports of vehicle crime were made on that day and hour.</p>
-
-        <h2>Interactivity</h2>
-        <h4>Map Visualization</h4>
-        <p>To interact with this visualization, hover your mouse over a circle on tha map. When you hover over a circle a tool tip appears which will gives more
-        information about that incident. The tool tip table includes the incident number, the neighborhood, the exact time and date, and the description of the incident.
-        When the mouse hovers over a neighborhood on the basemap, the name of the neighborhood will be shown.</p>
-
-        <h4>Heatmap Visualization</h4>
-        <p>To interact with the visualization, hover your mouse over a cell in the heatmap. When you hover over a cell, a details on demand table will appear that shows the day,
-        hour, and the exact value for the number of incidents that occured on this day during this hour. In addition, hovering over a specific cell will highlight it in the heatmap
-        with a red outline so you know which cell the tooltip corresponds to. </p>
-
-        <h2>Findings</h2>
-        <p>The major finding from these visualizations, is that the most dangerous part of San Francisco to park you car in over the last month was the northeastern part of the
-        city, and the most dangerous times to park your car on the street are weekdays between 5pm and 1am. This fits into the project narrative by helping us make informed
-        decisions on when and where is it a bad idea to park you car in San Francisco. These visualizations are updated to always show the last month of data so these findings may
-        change depending on when the visualizations are viewed.</p>
-
-        <h2 id="about">About</h2>
-
-        <!-- Profile box -->
-        <!-- https://bulma.io/documentation/layout/media-object/ -->
-        <article class="media">
-          <figure class="media-left">
-            <p class="image is-128x128"><img class="is-rounded" src="profile.jpg"></p>
-          </figure>
-
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong>Ahmed Kaddoura</strong><br/>
-                CS Major, <a href="https://www.usfca.edu/">University of San Francisco</a><br/>
-                <em>Expected Graduation: Fall 2020</em><br/>
-                <i class="fas fa-envelope"></i> <a href="mailto:amkaddoura@dons.usfca.edu">amkaddoura@dons.usfca.edu</a>
-              </p>
-
-              <p>
-                I am a software developer and data analyst  based in San Francisco. My research interests are in machine learning, computer vision, and human-computer interaction. I enjoy writing songs, playing basketball, hiking, and baking.
-              </p>
-            </div>
+            <a
+              class="navbar-item is-active"
+              href="visualizations.html"
+              title="Visualizations"
+            >
+              <span class="icon"><i class="fas fa-map"></i></span>
+              <span>Visualizations</span>
+            </a>
           </div>
-        </article>
-        <!-- End profile box -->
 
+          <!-- Right navbar items -->
+          <div class="navbar-end">
+            <a class="navbar-item" href="about.html" title="About">
+              <span class="icon"><i class="fas fa-info-circle"></i></span>
+              <span>About</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <!-- End page content -->
-    </div>
-  </section>
+    </nav>
+    <!-- End page navigation -->
 
-  <!-- Page footer -->
-  <!-- https://bulma.io/documentation/layout/footer/ -->
-  <footer class="footer">
-    <div class="content has-text-centered is-size-7">
-      <p>
-        <a href="#top">
-          <span class="fas fa-arrow-up"></span>
-          <span class="has-text-weight-medium">Back to Top</span>
-        </a>
-      </p>
+    <section class="section">
+      <div class="container">
+        <!-- Begin page content -->
+        <div class="content">
+          <h2>Locations of San Francisco Vehicle Crimes in the last 30 days</h2>
+          <svg width="960" height="600" id="map_vis">
+            <g id="basemap"></g>
+            <g id="streets" pointer-events="none"></g>
+            <g id="outline" pointer-events="none"></g>
+            <g id="vehicles"></g>
+            <g id="tooltip" pointer-events="none"></g>
+            <g id="details" pointer-events="none"></g>
+            <g id="legend" pointer-events="none"></g>
+          </svg>
 
-      <p>
-        <a href="https://github.com/usf-cs360-spring2020/project-ahmedkadd" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
-        </a>
+          <h2>Times of San Francisco Vehicle Crimes in the last 30 days</h2>
+          <svg width="960" height="500" id="heatmap_vis"></svg>
 
-        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
-        </a>
+          <script src="map.js"></script>
+          <script src="heatmap.js"></script>
 
-        <a href="https://bulma.io" class="button is-small">
-          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
-        </a>
-      </p>
-    </div>
-  </footer>
-  <!-- End page footer -->
+          <h2>Encoding</h2>
+          <h4>Map Visualization</h4>
+          <p>
+            Each circle on the map encodes one police incident of vehicle crime.
+            The position of the circle on the map is encoding the latitude and
+            longitude of where this incident occured. The color of the circle is
+            encoding the incident type. Red is given to motor vehicle thefts
+            because it is the more extreme and costly crime, while orange is
+            given to larceny from vehicle because it is less extreme and usually
+            less costly.
+          </p>
 
-  <!-- Mobile menu responsiveness -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+          <h4>Heatmap Visualization</h4>
+          <p>
+            This visualization is a heatmap which encodes the number of vehicle
+            crime reports to the San Francisco Police Department for each day of
+            the week and hour and in the last month. An orange color scale is
+            used, and the darker orange a cell is, the more reports of vehicle
+            crime were made on that day and hour.
+          </p>
 
-    if ($navbarBurgers.length > 0) {
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
+          <h2>Interactivity</h2>
+          <h4>Map Visualization</h4>
+          <p>
+            To interact with this visualization, hover your mouse over a circle
+            on tha map. When you hover over a circle a tool tip appears which
+            will gives more information about that incident. The tool tip table
+            includes the incident number, the neighborhood, the exact time and
+            date, and the description of the incident. When the mouse hovers
+            over a neighborhood on the basemap, the name of the neighborhood
+            will be shown.
+          </p>
+
+          <h4>Heatmap Visualization</h4>
+          <p>
+            To interact with the visualization, hover your mouse over a cell in
+            the heatmap. When you hover over a cell, a details on demand table
+            will appear that shows the day, hour, and the exact value for the
+            number of incidents that occured on this day during this hour. In
+            addition, hovering over a specific cell will highlight it in the
+            heatmap with a red outline so you know which cell the tooltip
+            corresponds to.
+          </p>
+
+          <h2>Findings</h2>
+          <p>
+            The major finding from these visualizations, is that the most
+            dangerous part of San Francisco to park you car in over the last
+            month was the northeastern part of the city, and the most dangerous
+            times to park your car on the street are weekdays between 5pm and
+            1am. This fits into the project narrative by helping us make
+            informed decisions on when and where is it a bad idea to park you
+            car in San Francisco. These visualizations are updated to always
+            show the last month of data so these findings may change depending
+            on when the visualizations are viewed.
+          </p>
+
+          <h2 id="about">About</h2>
+
+          <!-- Profile box -->
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-128x128">
+                <img class="is-rounded" src="profile.jpg" />
+              </p>
+            </figure>
+
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>Ahmed Kaddoura</strong><br />
+                  <a href="https://www.usfca.edu/"
+                    >University of San Francisco</a
+                  ><br />
+                  Master of Science in Computer Science<br />
+                  <em>Expected Graduation: December 2022</em><br />
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:amkaddoura@usfca.edu">amkaddoura@usfca.edu</a>
+                </p>
+
+                <p>
+                  I am a Software Developer and Data Scientist based in San
+                  Francisco. My research interests are in Machine Learning,
+                  Computer Vision, Brain-Computer Interfaces, and Human-Computer
+                  Interaction. I enjoy writing songs, playing basketball,
+                  hiking, and baking.
+                </p>
+              </div>
+            </div>
+          </article>
+          <!-- End profile box -->
+        </div>
+        <!-- End page content -->
+      </div>
+    </section>
+
+    <!-- Page footer -->
+    <footer class="footer">
+      <div class="content has-text-centered is-size-7">
+        <p>
+          <a href="#top">
+            <span class="fas fa-arrow-up"></span>
+            <span class="has-text-weight-medium">Back to Top</span>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/ahmedkadd/sf-vehicle-crime"
+            class="button is-small"
+            style="padding-left: 1em; padding-right: 1em"
+          >
+            <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+          </a>
+        </p>
+      </div>
+    </footer>
+    <!-- End page footer -->
+
+    <!-- Mobile menu responsiveness -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const $navbarBurgers = Array.prototype.slice.call(
+          document.querySelectorAll(".navbar-burger"),
+          0
+        );
+
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach((el) => {
+            el.addEventListener("click", () => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+              el.classList.toggle("is-active");
+              $target.classList.toggle("is-active");
+            });
+          });
+        }
       });
-    }
-  });
-  </script>
-  <!-- End mobile menu responsiveness -->
+    </script>
+    <!-- End mobile menu responsiveness -->
   </body>
-
 </html>

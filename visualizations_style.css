@@ -1,6 +1,6 @@
 #details {
   font-weight: 600;
-  color: white
+  color: white;
 
   font-family: sans-serif;
   font-size: 10pt;
@@ -48,11 +48,13 @@ circle.symbol {
   stroke-width: 1px;
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
   color: #444444;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
   color: red;
 }
 

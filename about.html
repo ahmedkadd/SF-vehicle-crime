@@ -1,163 +1,222 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>San Francisco Vehicle Crime Home About</title>
 
     <!-- Load Bulma from CDN -->
     <!-- https://bulma.io/ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
 
     <!-- Load Font Awesome 5 (free) icons -->
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
   </head>
 
   <body>
+    <!-- Page header -->
+    <!-- https://bulma.io/documentation/layout/hero/ -->
+    <section class="hero is-warning is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">San Francisco Vehicle Crime</h1>
+          <h2 class="subtitle">Ahmed Kaddoura</h2>
+        </div>
+      </div>
+    </section>
+    <!-- End page header -->
 
-  <!-- Page header -->
-  <!-- https://bulma.io/documentation/layout/hero/ -->
-  <section class="hero is-link is-bold">
-    <div class="hero-body">
+    <!-- Page navigation -->
+    <!-- https://bulma.io/documentation/components/navbar/ -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
       <div class="container">
-        <h1 class="title">San Francisco Vehicle Crime</h1>
-        <h2 class="subtitle">Ahmed Kaddoura</h2>
-      </div>
-    </div>
-  </section>
-  <!-- End page header -->
-
-  <!-- Page navigation -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="index.html">
-          <span class="icon"><i class="fas fa-home"></i></span>
-          <span>Home</span>
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-menu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="main-menu" class="navbar-menu has-text-weight-medium">
-        <!-- Left navbar items -->
-        <div class="navbar-start">
-          <a class="navbar-item" href="data.html" title="Data">
-            <span class="icon"><i class="fas fa-table"></i></span>
-            <span>Data</span>
+        <div class="navbar-brand">
+          <a class="navbar-item" href="index.html">
+            <span class="icon"><i class="fas fa-home"></i></span>
+            <span>Home</span>
           </a>
 
-          <a class="navbar-item" href="prototypes.html" title="Prototypes">
-            <span class="icon"><i class="fas fa-comment"></i></span>
-            <span>Prototypes</span>
-          </a>
-
-          <a class="navbar-item" href="visualizations.html" title="Visualizations">
-            <span class="icon"><i class="fas fa-map"></i></span>
-            <span>Visualizations</span>
-          </a>
-
-        </div>
-
-        <!-- Right navbar items -->
-        <div class="navbar-end">
-          <a class="navbar-item is-active" href="about.html" title="About">
-            <span class="icon"><i class="fas fa-info-circle"></i></span>
-            <span>About</span>
+          <a
+            role="button"
+            class="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="main-menu"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </a>
         </div>
-      </div>
-    </div>
-  </nav>
-  <!-- End page navigation -->
 
-  <section class="section">
-    <div class="container">
-      <!-- Begin page content -->
-      <div class="content">
-        <h1 class="title">
-          About Me
-        </h1>
+        <div id="main-menu" class="navbar-menu has-text-weight-medium">
+          <!-- Left navbar items -->
+          <div class="navbar-start">
+            <a class="navbar-item" href="data.html" title="Data">
+              <span class="icon"><i class="fas fa-table"></i></span>
+              <span>Data</span>
+            </a>
 
-        <article class="media">
-          <figure class="media-left">
-            <p class="image is-128x128"><img class="is-rounded" src="profile.jpg"></p>
-          </figure>
-          <div class="media-content">
-            <div class="member3">
-              <p>
-                <strong>Ahmed Kaddoura</strong><br />
-                Master's in Computer Science, <a href="https://www.usfca.edu/">University of San Francisco</a><br />
-                <em>Expected Graduation: December 2022</em><br />
-                <i class="fas fa-envelope"></i> <a href="mailto:amkaddoura@dons.usfca.edu">amkaddoura@dons.usfca.edu</a>
-              </p>
-              <p>I am a software developer and data analyst  based in San Francisco. My research interests are in machine learning, computer vision, and human-computer interaction. I enjoy writing songs, playing basketball, hiking, and baking.</p>
-            </div>
+            <a class="navbar-item" href="prototypes.html" title="Prototypes">
+              <span class="icon"><i class="fas fa-comment"></i></span>
+              <span>Prototypes</span>
+            </a>
+
+            <a
+              class="navbar-item"
+              href="visualizations.html"
+              title="Visualizations"
+            >
+              <span class="icon"><i class="fas fa-map"></i></span>
+              <span>Visualizations</span>
+            </a>
           </div>
-        </article>
 
-        <h2> Motivation </h2>
-        <p>I chose to visualize this dataset because vehicle crime in the city is a problem that has affected my family, my friends, and me personally. I have had my car broken into with luggage I had packed for a trip inside. When I got back to my car, all the luggage was stolen.
-          I filed a police report, but nothing came out of it. This project is meant to bring more attention to this problem, and to see the trends and areas in which it is most common. I hope my visualizations can help people think about where they park
-          their car and what they leave in it to prevent incidents like the one that happened to me. </p>
+          <!-- Right navbar items -->
+          <div class="navbar-end">
+            <a class="navbar-item is-active" href="about.html" title="About">
+              <span class="icon"><i class="fas fa-info-circle"></i></span>
+              <span>About</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <!-- End page content -->
-    </div>
-  </section>
+    </nav>
+    <!-- End page navigation -->
 
-  <!-- Page footer -->
-  <!-- https://bulma.io/documentation/layout/footer/ -->
-  <footer class="footer">
-    <div class="content has-text-centered is-size-7">
-      <p>
-        <a href="#top">
-          <span class="fas fa-arrow-up"></span>
-          <span class="has-text-weight-medium">Back to Top</span>
-        </a>
-      </p>
+    <section class="section">
+      <div class="container">
+        <!-- Begin page content -->
+        <div class="content">
+          <h1 class="title">About</h1>
+          <p>
+            Vehicle crime is a massive problem in San Francisco. Car break-ins
+            and auto theft are extremely common, and the problem has gotten
+            worse in recent years. The goal of this project is to educate people
+            on where and when vehicle crime is most likely to occur. I used San
+            Francisco Police Department data to create visualizations that
+            examine the problem. I would like to answer the questions:
+          </p>
+          <ol>
+            <li>
+              Where are the most dangerous places to park your car in San
+              Francisco?
+            </li>
+            <li>When is the most dangerous time to park your car in public</li>
+          </ol>
+          <p>
+            By answering these questions, I hope this project can be utilized as
+            a tool by San Francisco residents to make safer and more informed
+            decisions with where they leave their cars. I also chose to
+            visualize this data because San Francisco vehicle is a problem that
+            has affected my family, my friends, and me. I have had my car broken
+            into with luggage I had packed for a trip inside. When I got back to
+            my car, all the luggage was stolen. I filed a police report, but
+            nothing came out of it. This project is meant to bring more
+            attention to this problem, and to see the trends and areas in which
+            it is most common. I hope this tool will help people think about
+            where they park their car and what they leave in it to reduce the
+            number of incidents.
+          </p>
 
-      <p>
-        <a href="https://github.com/usf-cs360-spring2020/project-ahmedkadd" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
-        </a>
+          <p>
+            This website also highlights the process I went through to develop
+            the data visualizations. The visualizations are updated to show the
+            last 30 months of data. You can find information on the data set on
+            the <a href="data.html">data tab</a>, see my alpha and beta
+            prototypes on the <a href="prototypes.html">prototypes tab</a>, then
+            view the final product on the
+            <a href="visualizations.html">visualizations tab</a>.
+          </p>
+          <h2 id="about">About</h2>
 
-        <a href="https://fontawesome.com/" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
-          <i class="fab fa-font-awesome"></i>&nbsp;<strong>FontAwesome</strong>
-        </a>
+          <!-- Profile box -->
+          <article class="media">
+            <figure class="media-left">
+              <p class="image is-128x128">
+                <img class="is-rounded" src="profile.jpg" />
+              </p>
+            </figure>
 
-        <a href="https://bulma.io" class="button is-small">
-          <img src="https://bulma.io/images/made-with-bulma--semiblack.png" alt="Made with Bulma" width="128" height="24">
-        </a>
-      </p>
-    </div>
-  </footer>
-  <!-- End page footer -->
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>Ahmed Kaddoura</strong><br />
+                  <a href="https://www.usfca.edu/"
+                    >University of San Francisco</a
+                  ><br />
+                  Master of Science in Computer Science<br />
+                  <em>Expected Graduation: December 2022</em><br />
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:amkaddoura@usfca.edu">amkaddoura@usfca.edu</a>
+                </p>
 
-  <!-- Mobile menu responsiveness -->
-  <!-- https://bulma.io/documentation/components/navbar/ -->
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+                <p>
+                  I am a Software Developer and Data Scientist based in San
+                  Francisco. My research interests are in Machine Learning,
+                  Computer Vision, Brain-Computer Interfaces, and Human-Computer
+                  Interaction. I enjoy writing songs, playing basketball,
+                  hiking, and baking.
+                </p>
+              </div>
+            </div>
+          </article>
+          <!-- End profile box -->
+        </div>
+        <!-- End page content -->
+      </div>
+    </section>
 
-    if ($navbarBurgers.length > 0) {
-      $navbarBurgers.forEach( el => {
-        el.addEventListener('click', () => {
-          const target = el.dataset.target;
-          const $target = document.getElementById(target);
-          el.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-        });
+    <!-- Page footer -->
+    <footer class="footer">
+      <div class="content has-text-centered is-size-7">
+        <p>
+          <a href="#top">
+            <span class="fas fa-arrow-up"></span>
+            <span class="has-text-weight-medium">Back to Top</span>
+          </a>
+        </p>
+
+        <p>
+          <a
+            href="https://github.com/ahmedkadd/sf-vehicle-crime"
+            class="button is-small"
+            style="padding-left: 1em; padding-right: 1em"
+          >
+            <i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
+          </a>
+        </p>
+      </div>
+    </footer>
+    <!-- End page footer -->
+
+    <!-- Mobile menu responsiveness -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const $navbarBurgers = Array.prototype.slice.call(
+          document.querySelectorAll(".navbar-burger"),
+          0
+        );
+
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach((el) => {
+            el.addEventListener("click", () => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+              el.classList.toggle("is-active");
+              $target.classList.toggle("is-active");
+            });
+          });
+        }
       });
-    }
-  });
-  </script>
-  <!-- End mobile menu responsiveness -->
+    </script>
+    <!-- End mobile menu responsiveness -->
   </body>
-
 </html>
